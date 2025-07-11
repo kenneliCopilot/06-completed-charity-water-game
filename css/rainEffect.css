@@ -1,0 +1,28 @@
+/* 页面背景无需覆盖原样式 */
+.rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* 雨滴样式 */
+.raindrop {
+  background: linear-gradient(to bottom, rgba(13,52,58,1) 0%, rgba(255,255,255,0.6) 100%);
+  width: 1px;
+  height: 89px;
+  position: absolute;
+  bottom: 200px;
+  animation: fall 0.63s linear infinite;
+}
+
+/* 动画效果 */
+@keyframes fall {
+  to {
+    margin-top: 900px;
+  }
+}

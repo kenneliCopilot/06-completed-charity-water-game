@@ -1,0 +1,90 @@
+<!-- modules.html  -------------------->
+
+<!-- 主动点击 -->
+<template id="tpl-click">
+  <div class="upgrade-panel">
+    <h2 data-i18n="title_click">👆 主动点击</h2>
+    <p data-i18n="desc_click">在这个世界里，点一下，就能带来一滴希望的水。<br>● 每次点击产出水资源<br>● 可消耗水升级，提升每次点击的产量</p>
+
+    <div id="active-click-level">
+      <span data-i18n="label_level">当前等级：</span><span id="ac-level"></span>
+      （<span data-i18n="label_gain">产量：</span><span id="ac-gain"></span>）
+    </div>
+
+    <button id="ac-upgrade-btn" class="upgrade-btn">
+      <span data-i18n="btn_upgrade">升级</span>（<span data-i18n="label_cost">花费：</span><span id="ac-cost"></span>）
+    </button>
+  </div>
+</template>
+
+<!-- 自动点击 -->
+<template id="tpl-autoClick">
+  <h2 data-i18n="title_auto_click">🖱️ 自动点击</h2>
+  <p data-i18n="desc_auto_click">你不再需要亲自点击。建造各种取水系统，让水源自动流淌！<br>● 每秒自动产水，完全离线收益<br>● 可批量购买、原价回收</p>
+
+  <div class="system-list">
+    <div id="auto-click-list"></div>
+  </div>
+</template>
+
+<!-- 主动事件 -->
+<template id="tpl-activeEvent">
+  <div class="upgrade-panel">
+    <h2 data-i18n="title_active_event">💯 主动事件</h2>
+    <p data-i18n="desc_active_event">当点击次数达到一定门槛，就能引发“水储爆发”，一次性释放巨量水资源！<br>● 每点击 100 次自动触发一次储水爆发<br>● 解锁更高级储水等级，提升爆发产量</p>
+
+    <div id="ae-stats"></div>
+
+    <div class="ae-table">
+      <div class="ae-header">
+        <span data-i18n="label_level">等级</span>
+        <span data-i18n="label_name">名称</span>
+        <span data-i18n="label_gain_cost">产量/消耗</span>
+        <span data-i18n="label_unlock">解锁条件</span>
+      </div>
+      <div id="ae-rows"></div>
+    </div>
+
+    <button id="ae-upgrade-btn" class="upgrade-btn">
+      <span data-i18n="btn_upgrade">升级</span>（<span data-i18n="label_cost">消耗：</span><span id="ae-cost"></span>）
+    </button>
+  </div>
+</template>
+
+<!-- 自动事件 -->
+<template id="tpl-autoEvent">
+  <div class="upgrade-panel">
+    <h2 data-i18n="title_auto_event">🌧️ 自动事件</h2>
+    <p data-i18n="desc_auto_event">天空的馈赠，不容忽视。解锁降雨系统后，每过一分钟，天空将随机落下甘霖！<br>● 每分钟自动触发一场降雨<br>● 每场雨流量不同，随机选中已解锁类型</p>
+
+    <div id="aeve-info"></div>
+    <button id="aeve-upgrade-btn" class="upgrade-btn"></button>
+    <div class="aeve-card-list" id="aeve-list"></div>
+  </div>
+</template>
+
+<!-- 成就系统 -->
+<template id="tpl-achievements">
+  <div class="upgrade-panel">
+    <h2 data-i18n="title_achievements">💎 成就系统：漂流瓶</h2>
+    <p data-i18n="desc_achievements">每次打开漂流瓶会消耗当前水量的 <strong>10 %</strong>（最低 1 吨）。<br>● 此系统将在首次重生后解锁<br>● 你获得了一瓶……</p>
+
+    <button id="ach-open-btn" class="upgrade-btn" data-i18n="btn_open_bottle">🍾 打开漂流瓶</button>
+
+    <div id="ach-summary" class="ach-summary"></div>
+    <div id="ach-list" class="ach-card-list"></div>
+  </div>
+</template>
+
+<!-- 设置模板 -->
+<template id="tpl-settings">
+  <div class="upgrade-panel">
+    <h2 data-i18n="title_settings">⚙️ 设置</h2>
+    <p data-i18n="desc_settings">你可以切换语言、导出/导入存档。</p>
+    <div class="settings-buttons">
+      <button id="btn-toggle-lang" class="upgrade-btn" data-i18n="btn_toggle_lang">🌐 切换语言</button>
+      <button id="btn-export-save" class="upgrade-btn" data-i18n="btn_export">📋 复制存档</button>
+      <button id="btn-import-save" class="upgrade-btn" data-i18n="btn_import">📥 导入存档</button>
+    </div>
+  </div>
+</template>

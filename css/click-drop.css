@@ -1,0 +1,94 @@
+/* ========= click-drop.css ========= */
+
+.drop {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 50%;
+  animation: drip 1s cubic-bezier(1, 0, 0.9, 0.2) forwards;
+  pointer-events: none;
+  z-index: 999;
+  transform: translate(-50%, -50%);
+}
+
+.drop::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 30px solid rgba(255, 255, 255, 1);
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.wave {
+  position: absolute;
+  width: 2px;
+  height: 1px;
+  border: 7px solid #fff;
+  border-radius: 300px / 150px;
+  opacity: 0;
+  animation: ripple 1s linear forwards;
+  pointer-events: none;
+  z-index: 998;
+  transform: translate(-50%, -50%);
+}
+
+.wave::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 1px;
+  border: #FFF 5px solid;
+  border-radius: 300px / 150px;
+  animation-name: ripple-2;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  opacity: 0;
+}
+
+
+/* 水滴下落动画 */
+@keyframes drip {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(160px);
+    opacity: 0;
+  }
+}
+
+/* 主波纹动画 */
+@keyframes ripple {
+  from {
+    opacity: 1;
+  }
+  to {
+    width: 600px;
+    height: 300px;
+    border-width: 1px;
+    opacity: 0;
+  }
+}
+
+/* 副波纹动画 */
+@keyframes ripple-2 {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    width: 200px;
+    height: 100px;
+    border-width: 1px;
+    opacity: 0;
+  }
+}

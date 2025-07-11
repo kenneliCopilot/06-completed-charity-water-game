@@ -1,0 +1,47 @@
+#background-wave {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#background-wave svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ✅ 修改 fill 颜色为浅蓝色 + 半透明 */
+.water-fill {
+  fill: url(#water);
+  animation: wave 0.7s infinite linear, 
+             fill-up 10s infinite ease-in-out alternate;
+  opacity: 0.2; /* ✅ 调低亮度感 */
+}
+
+/* ✅ 修改 wave 颜色为浅蓝（SVG内部 <path>） */
+#water path {
+  fill: rgba(0, 213, 255, 0.4); /* 浅蓝 + 半透明 */
+}
+
+/* ✅ 横向平移动画 */
+@keyframes wave {
+  0% { x: -400px; }
+  100% { x: 0; }
+}
+
+/* ✅ 缩减 fill 高度动画 */
+@keyframes fill-up {
+  0% {
+    height: 0;
+    y: 130px;
+  }
+  100% {
+    height: 100px; /* ✅ 改为原来一半 */
+    y: 20px;       /* ✅ 稍微往上提 */
+  }
+}
