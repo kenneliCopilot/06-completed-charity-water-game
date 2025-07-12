@@ -78,12 +78,20 @@ document.body.addEventListener("click", (e) => {
   gameSave.w += gain;
   gameSave.lc += 1;
 
+  // ✅ 播放水滴音效
+  const clickAudio = document.getElementById("click-sound");
+  if (clickAudio) {
+    clickAudio.currentTime = 0; // 重置到开头
+    clickAudio.play().catch(() => {}); // 防止因用户未交互导致的错误
+  }
+
   spawnFloating("+" + formatUnit(gain));
-  spawnDroplet(e.clientX, e.clientY);   // 👈 传入点击位置
+  spawnDroplet(e.clientX, e.clientY);
 
   updateUI();
   saveGame();
 });
+
 
 
 
@@ -192,6 +200,10 @@ window.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".nav-btn").forEach((btn) => {
     btn.addEventListener("click", () => openTab(btn.dataset.tab));
   });
+
+  showDifficultyPopup(); // ✅ 仅首次执行一次
+  console.log("弹窗已触发！");
+
 });
 
 
@@ -234,4 +246,55 @@ function spawnDroplet(clickX, clickY) {
     drop.remove();
     wave.remove();
   }, 1200);
+}
+
+
+function showDifficultyPopup() {
+  if (localStorage.getItem("hasSelectedDifficulty")) return;
+
+  const difficultyHTML = `
+<div class="modal-content" style="z-index:999; position:relative; width: 100%;">
+  <h3 style="text-align:center; color: var(--light-yellow);">Select Your Difficulty</h3>
+  <div style="display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1rem;">
+    <button class="upgrade-btn" data-diff="easy">🌱 Easy Mode (Start with a Bathtub)</button>
+    <button class="upgrade-btn" data-diff="normal">💧 Normal Mode (Start with a Faucet)</button>
+    <button class="upgrade-btn" data-diff="hard">🔥 Hard Mode (Start with Nothing)</button>
+  </div>
+</div>
+
+  `;
+
+  // 插入弹窗内容并显示
+  modalBody.innerHTML = difficultyHTML;
+  modal.classList.remove("hidden");
+
+  // 绑定点击事件
+  modalBody.querySelectorAll("button[data-diff]").forEach((btn) => {
+    btn.onclick = () => {
+      const choice = btn.dataset.diff;
+      localStorage.setItem("hasSelectedDifficulty", "1");
+
+      // 初始化 ai 数组（确保长度足够）
+      if (!Array.isArray(gameSave.ai)) gameSave.ai = [];
+      while (gameSave.ai.length < 7) gameSave.ai.push(0);
+
+      // 发放奖励
+      if (choice === "easy") gameSave.ai[1] += 1;       // 浴缸
+      else if (choice === "normal") gameSave.ai[0] += 1; // 水龙头
+
+      saveGame();
+      updateUI();
+
+      // ✅ 关闭弹窗
+      modal.classList.add("hidden");
+
+      // ✅ 提示语
+      const nameMap = {
+        easy: "简单模式 🌱",
+        normal: "普通模式 💧",
+        hard: "困难模式 🔥"
+      };
+      showToast(`你选择了 ${nameMap[choice]}`);
+    };
+  });
 }

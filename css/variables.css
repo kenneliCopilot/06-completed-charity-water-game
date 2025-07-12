@@ -19,7 +19,6 @@ html,
 body {
   margin: 0;
   padding: 0;
-  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--dark-blue);
   color: var(--white);
   overflow: hidden; /* 禁止页面滚动 */
@@ -43,6 +42,11 @@ p {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     unicode-bidi: isolate;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 200;
 }
 
 /* 自定义滚动条样式（Chrome, Edge, Safari） */

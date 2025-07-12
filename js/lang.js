@@ -103,7 +103,7 @@ const LANG_DATA = {
 
 
 /* 默认语言（可改） */
-let currentLang = "zh";
+let currentLang = "en";
 
 /* i18n 渲染 */
 function renderI18n() {
